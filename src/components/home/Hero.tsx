@@ -14,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-hero-gradient min-h-[500px] flex items-center overflow-hidden">
+    <section className="relative bg-nordic-gradient min-h-[500px] flex items-center overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl" />
@@ -39,11 +39,11 @@ const Hero = () => {
                 placeholder="Suche nach Marke, Modell oder Stichwort..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-4 pr-14 rounded-full text-foreground bg-white shadow-xl focus:outline-none focus:ring-2 focus:ring-white/50 text-lg"
+                className="w-full px-6 py-4 pr-14 rounded-lg text-foreground bg-white shadow-xl focus:outline-none focus:ring-2 focus:ring-accent text-lg"
               />
               <button 
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary hover:bg-primary/90 text-white p-3 rounded-full transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-accent hover:bg-accent/90 text-white p-3 rounded-lg transition-colors"
               >
                 <Search className="h-5 w-5" />
               </button>

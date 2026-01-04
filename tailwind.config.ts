@@ -61,12 +61,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         nordic: {
-          orange: "hsl(var(--nordic-orange))",
-          "orange-light": "hsl(var(--nordic-orange-light))",
-          navy: "hsl(var(--nordic-navy))",
-          "navy-light": "hsl(var(--nordic-navy-light))",
+          blue: "hsl(var(--nordic-blue))",
+          "blue-dark": "hsl(var(--nordic-blue-dark))",
+          "blue-light": "hsl(var(--nordic-blue-light))",
+          ice: "hsl(var(--nordic-ice))",
           gray: "hsl(var(--nordic-gray))",
-          "gray-dark": "hsl(var(--nordic-gray-dark))",
         },
       },
       borderRadius: {

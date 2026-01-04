@@ -63,10 +63,10 @@ const Quality = () => {
       <section className="bg-nordic-gradient py-20">
         <div className="container">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Nordic-Qualitätsstandard
             </h1>
-            <p className="text-lg text-primary-foreground/80">
+            <p className="text-lg text-white/90">
               Bei Nordic verkaufen wir nur Autos, die wir vorher einer gründlichen Prüfung unterzogen haben. 
               Unten finden Sie unsere Qualitätsstandards im Detail erklärt und wie wir Abnutzung und 
               Verschleiß von Gebrauchsspuren unterscheiden.
@@ -78,40 +78,40 @@ const Quality = () => {
       {/* Visual Condition */}
       <section className="section-padding">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold mb-8">Visueller Zustand des Autos</h2>
+          <h2 className="text-3xl font-bold mb-8">Visueller Zustand des Autos</h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <p className="text-foreground/80 mb-6">
+              <p className="text-foreground mb-6">
                 Unsere Experten untersuchen den Zustand jedes Autos. Da wir gebrauchte Autos verkaufen, 
                 können einige altersentsptrechende Gebrauchsspuren und Abnutzungserscheinungen vorkommen.
               </p>
-              <p className="text-foreground/80 mb-6">
+              <p className="text-foreground mb-6">
                 Jedoch zeigen wir alle Gebrauchsspuren, die über eine normale Abnutzung hinausgehen 
                 und aus 2 Metern Entfernung sichtbar sind, transparent auf.
               </p>
               
               <div className="space-y-4">
-                <div className="p-4 bg-muted rounded-lg">
+                <div className="p-4 bg-muted rounded-xl">
                   <h4 className="font-semibold mb-2">Äußeres</h4>
                   <p className="text-sm text-muted-foreground">Kratzer, Dellen und Steinschläge werden dokumentiert</p>
                 </div>
-                <div className="p-4 bg-muted rounded-lg">
+                <div className="p-4 bg-muted rounded-xl">
                   <h4 className="font-semibold mb-2">Innenraum</h4>
                   <p className="text-sm text-muted-foreground">Kratzer, Flecken, Beschädigungen und abgenutzte Stellen</p>
                 </div>
-                <div className="p-4 bg-muted rounded-lg">
+                <div className="p-4 bg-muted rounded-xl">
                   <h4 className="font-semibold mb-2">Windschutzscheibe</h4>
                   <p className="text-sm text-muted-foreground">Kratzer und Steinschläge</p>
                 </div>
-                <div className="p-4 bg-muted rounded-lg">
+                <div className="p-4 bg-muted rounded-xl">
                   <h4 className="font-semibold mb-2">Reifen und Felgen</h4>
                   <p className="text-sm text-muted-foreground">Kratzer oder Schrammen</p>
                 </div>
               </div>
             </div>
             
-            <div className="bg-muted rounded-lg aspect-square flex items-center justify-center">
+            <div className="bg-muted rounded-xl aspect-square flex items-center justify-center">
               <Eye className="h-32 w-32 text-muted-foreground/20" />
             </div>
           </div>
@@ -121,12 +121,12 @@ const Quality = () => {
       {/* Quality Promise */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold text-center mb-12">Nordic-Qualitätsversprechen</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Nordic-Qualitätsversprechen</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {qualityPromises.map((promise, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-lg border">
-                <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+              <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-xl border">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-foreground">{promise}</span>
               </div>
             ))}
@@ -137,7 +137,7 @@ const Quality = () => {
       {/* Process */}
       <section className="section-padding">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold text-center mb-4">
+          <h2 className="text-3xl font-bold text-center mb-4">
             So stellen wir Qualität und Transparenz sicher
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -147,10 +147,10 @@ const Quality = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="p-4 rounded-full bg-accent/10 w-fit mx-auto mb-4">
-                  <step.icon className="h-10 w-10 text-accent" />
+                <div className="p-4 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
+                  <step.icon className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="text-xl font-serif font-bold mb-3">{step.title}</h3>
+                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
                 <p className="text-sm text-muted-foreground">{step.description}</p>
               </div>
             ))}
@@ -161,12 +161,12 @@ const Quality = () => {
       {/* FAQ */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold text-center mb-12">Häufig gestellte Fragen</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Häufig gestellte Fragen</h2>
           
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg border px-6">
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-xl border px-6">
                   <AccordionTrigger className="text-left font-semibold">
                     {faq.question}
                   </AccordionTrigger>
@@ -186,20 +186,20 @@ const Quality = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center p-6">
               <Shield className="h-12 w-12 text-accent mx-auto mb-4" />
-              <div className="text-primary-foreground font-semibold">Garantie inklusive</div>
+              <div className="text-white font-semibold">Garantie inklusive</div>
             </div>
             <div className="text-center p-6">
               <CheckCircle className="h-12 w-12 text-accent mx-auto mb-4" />
-              <div className="text-primary-foreground font-semibold">21 Tage Geld-zurück-Garantie</div>
+              <div className="text-white font-semibold">21 Tage Geld-zurück-Garantie</div>
             </div>
             <div className="text-center p-6">
               <Wrench className="h-12 w-12 text-accent mx-auto mb-4" />
-              <div className="text-primary-foreground font-semibold">Geprüft und aufbereitet</div>
+              <div className="text-white font-semibold">Geprüft und aufbereitet</div>
             </div>
           </div>
           
           <div className="text-center">
-            <h2 className="text-3xl font-serif font-bold text-primary-foreground mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Kaufen Sie mit Vertrauen!
             </h2>
             <Button asChild size="lg" className="btn-hero">
