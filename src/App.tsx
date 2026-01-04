@@ -4,6 +4,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import HowItWorks from "./pages/HowItWorks";
+import Delivery from "./pages/Delivery";
+import Guarantee from "./pages/Guarantee";
+import Quality from "./pages/Quality";
+import Contact from "./pages/Contact";
+import Cars from "./pages/Cars";
+import Imprint from "./pages/Imprint";
+import Privacy from "./pages/Privacy";
+import AdminLogin from "./pages/AdminLogin";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,7 +26,16 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/fahrzeuge" element={<Cars />} />
+          <Route path="/so-funktionierts" element={<HowItWorks />} />
+          <Route path="/lieferung" element={<Delivery />} />
+          <Route path="/garantie" element={<Guarantee />} />
+          <Route path="/qualitaet" element={<Quality />} />
+          <Route path="/kontakt" element={<Contact />} />
+          <Route path="/impressum" element={<Imprint />} />
+          <Route path="/datenschutz" element={<Privacy />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
