@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary">
+    <header className="sticky top-0 z-50 w-full bg-nordic-gradient shadow-md">
       <div className="container">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}

@@ -41,10 +41,10 @@ const HowItWorks = () => {
       <section className="bg-nordic-gradient py-20">
         <div className="container">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Alles klar beim Autokauf – so funktioniert's!
             </h1>
-            <p className="text-lg text-primary-foreground/80">
+            <p className="text-lg text-white/90">
               Unser Team steht Ihnen jederzeit zur Verfügung, um Ihnen beim Autokauf zu helfen. 
               Egal ob Sie bequem von zu Hause aus kaufen möchten oder uns persönlich besuchen wollen – 
               wir haben alles im Griff. Unser Ziel ist es, sicherzustellen, dass Sie Ihren nächsten 
@@ -57,19 +57,19 @@ const HowItWorks = () => {
       {/* Steps */}
       <section className="section-padding">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold text-center mb-12">Wie es funktioniert</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Wie es funktioniert</h2>
           
           <div className="space-y-16">
             {steps.map((step, index) => (
               <div key={index} className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 items-center`}>
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-full bg-accent/10">
-                      <step.icon className="h-8 w-8 text-accent" />
+                    <div className="p-3 rounded-xl bg-primary/10">
+                      <step.icon className="h-8 w-8 text-primary" />
                     </div>
                     <div>
-                      <span className="text-sm text-accent font-semibold">Schritt {index + 1}</span>
-                      <h3 className="text-2xl font-serif font-bold">{step.title}</h3>
+                      <span className="text-sm text-primary font-semibold">Schritt {index + 1}</span>
+                      <h3 className="text-2xl font-bold text-foreground">{step.title}</h3>
                     </div>
                   </div>
                   <h4 className="text-xl text-muted-foreground mb-4">{step.subtitle}</h4>
@@ -77,8 +77,8 @@ const HowItWorks = () => {
                   <div className="flex flex-wrap gap-4">
                     {step.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-accent" />
-                        <span>{feature}</span>
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                        <span className="text-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -97,7 +97,7 @@ const HowItWorks = () => {
       {/* Why Nordic */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-serif font-bold text-center mb-4">Warum Nordic wählen?</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">Warum Nordic wählen?</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Weil wir Ihren Gebrauchtwagenkauf ganz einfach gestalten! Mit einem erstklassigen Bestand, 
             fairer Preisgestaltung und persönlicher Beratung haben wir viele Möglichkeiten für Sie.
@@ -105,15 +105,15 @@ const HowItWorks = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="p-6">
-              <div className="text-4xl font-bold text-accent mb-2">100+</div>
+              <div className="text-4xl font-bold text-primary mb-2">100+</div>
               <div className="text-muted-foreground">Zufriedene Kunden</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-accent mb-2">50+</div>
+              <div className="text-4xl font-bold text-primary mb-2">50+</div>
               <div className="text-muted-foreground">Autos verkauft</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-accent mb-2">Hamburg</div>
+              <div className="text-4xl font-bold text-primary mb-2">Hamburg</div>
               <div className="text-muted-foreground">Standort in Deutschland</div>
             </div>
           </div>

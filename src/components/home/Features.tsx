@@ -46,9 +46,9 @@ const Features = () => {
             <Link
               key={index}
               to={feature.link}
-              className="bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 group"
+              className="bg-card p-6 rounded-xl border border-border shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 group"
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                 <feature.icon className="h-7 w-7 text-primary group-hover:text-white transition-colors" />
               </div>
               <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">

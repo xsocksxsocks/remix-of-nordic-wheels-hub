@@ -2,36 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Nordic-Automobile Design System - Autohero-inspired */
+/* Nordic-Automobile Design System - Nordic Blue Theme */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* Primary - Nordic Orange (Autohero-inspired) */
-    --primary: 20 90% 48%;
+    /* Primary - Nordic Deep Blue */
+    --primary: 210 70% 35%;
     --primary-foreground: 0 0% 100%;
     
-    /* Background - Pure white */
+    /* Background - Clean white */
     --background: 0 0% 100%;
-    --foreground: 220 20% 20%;
+    --foreground: 215 25% 20%;
 
-    /* Card - Clean white */
+    /* Card - Pure white */
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 20%;
+    --card-foreground: 215 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 20%;
+    --popover-foreground: 215 25% 20%;
 
-    /* Secondary - Light gray */
-    --secondary: 220 15% 96%;
-    --secondary-foreground: 220 20% 20%;
+    /* Secondary - Light blue-gray */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 20%;
 
-    /* Muted - Soft gray */
-    --muted: 220 15% 95%;
-    --muted-foreground: 220 10% 50%;
+    /* Muted - Soft blue-gray */
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 15% 45%;
 
-    /* Accent - Deep Navy for contrast */
-    --accent: 215 80% 25%;
+    /* Accent - Lighter Nordic Blue for highlights */
+    --accent: 200 75% 45%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -39,74 +39,73 @@
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 220 15% 90%;
-    --input: 220 15% 90%;
-    --ring: 20 90% 48%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 70% 35%;
 
     --radius: 0.5rem;
 
     /* Custom tokens for Nordic theme */
-    --nordic-orange: 20 90% 48%;
-    --nordic-orange-light: 20 85% 55%;
-    --nordic-navy: 215 80% 25%;
-    --nordic-navy-light: 215 60% 35%;
-    --nordic-gray: 220 15% 96%;
-    --nordic-gray-dark: 220 10% 40%;
+    --nordic-blue: 210 70% 35%;
+    --nordic-blue-dark: 215 75% 25%;
+    --nordic-blue-light: 200 75% 45%;
+    --nordic-ice: 200 30% 95%;
+    --nordic-gray: 210 15% 50%;
     
-    /* Shadows - softer, more modern */
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 12px -1px rgb(0 0 0 / 0.08);
-    --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0 hsl(215 25% 20% / 0.05);
+    --shadow-md: 0 4px 12px -1px hsl(215 25% 20% / 0.08);
+    --shadow-lg: 0 10px 25px -3px hsl(215 25% 20% / 0.1);
+    --shadow-xl: 0 25px 50px -12px hsl(215 25% 20% / 0.15);
 
     /* Sidebar */
-    --sidebar-background: 215 80% 25%;
+    --sidebar-background: 215 75% 25%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 20 90% 48%;
+    --sidebar-primary: 200 75% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 70% 35%;
+    --sidebar-accent: 215 65% 35%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 215 70% 30%;
-    --sidebar-ring: 20 90% 48%;
+    --sidebar-border: 215 65% 30%;
+    --sidebar-ring: 200 75% 45%;
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 0 0% 95%;
+    --background: 215 30% 10%;
+    --foreground: 210 20% 95%;
 
-    --card: 220 20% 14%;
-    --card-foreground: 0 0% 95%;
+    --card: 215 30% 14%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 220 20% 14%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 215 30% 14%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 20 90% 50%;
+    --primary: 200 75% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 215 30% 18%;
+    --secondary-foreground: 210 20% 95%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 215 30% 18%;
+    --muted-foreground: 210 15% 60%;
 
-    --accent: 215 80% 45%;
+    --accent: 200 75% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 22%;
-    --input: 220 20% 22%;
-    --ring: 20 90% 50%;
+    --border: 215 30% 22%;
+    --input: 215 30% 22%;
+    --ring: 200 75% 50%;
     
-    --sidebar-background: 220 20% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 20 90% 50%;
+    --sidebar-background: 215 30% 10%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 200 75% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 18%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 20% 22%;
-    --sidebar-ring: 20 90% 50%;
+    --sidebar-accent: 215 30% 18%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 215 30% 22%;
+    --sidebar-ring: 200 75% 50%;
   }
 }
 
@@ -127,23 +126,23 @@
 }
 
 @layer components {
-  /* Primary CTA button - Orange */
+  /* Primary CTA button */
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 py-3 rounded-full transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
   }
   
-  /* Secondary button - Outlined Navy */
+  /* Secondary button */
   .btn-secondary {
-    @apply border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-6 py-3 rounded-full transition-all duration-200;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-200;
   }
 
   /* Hero button styles */
   .btn-hero {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-200;
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-4 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-200;
   }
   
   .btn-hero-outline {
-    @apply border-2 border-accent bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-4 text-lg rounded-full transition-all duration-200;
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 py-4 text-lg rounded-lg transition-all duration-200;
   }
 
   /* Section styling */
@@ -158,7 +157,7 @@
 
   /* Feature card */
   .feature-card {
-    @apply bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300;
+    @apply bg-card p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-all duration-300;
   }
 
   /* Status badges */
@@ -189,18 +188,13 @@
     text-wrap: balance;
   }
   
-  /* Hero gradient overlay */
-  .bg-hero-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--nordic-orange-light)) 100%);
+  /* Nordic gradient - deep blue */
+  .bg-nordic-gradient {
+    background: linear-gradient(135deg, hsl(215 75% 25%) 0%, hsl(210 70% 35%) 100%);
   }
   
   /* Subtle section background */
   .bg-section-alt {
     @apply bg-secondary;
-  }
-
-  /* Orange gradient text */
-  .text-gradient-primary {
-    @apply bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent;
   }
 }
