@@ -14,8 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -62,12 +61,12 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         nordic: {
+          orange: "hsl(var(--nordic-orange))",
+          "orange-light": "hsl(var(--nordic-orange-light))",
           navy: "hsl(var(--nordic-navy))",
           "navy-light": "hsl(var(--nordic-navy-light))",
-          gold: "hsl(var(--nordic-gold))",
-          "gold-light": "hsl(var(--nordic-gold-light))",
-          cream: "hsl(var(--nordic-cream))",
-          steel: "hsl(var(--nordic-steel))",
+          gray: "hsl(var(--nordic-gray))",
+          "gray-dark": "hsl(var(--nordic-gray-dark))",
         },
       },
       borderRadius: {
