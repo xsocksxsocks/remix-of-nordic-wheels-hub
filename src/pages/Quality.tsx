@@ -8,6 +8,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import workshopImage from "@/assets/workshop-inspection.jpg";
+import tireInspectionImage from "@/assets/tire-inspection.jpg";
 
 const Quality = () => {
   const qualityPromises = [
@@ -153,8 +155,12 @@ const Quality = () => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl p-8 flex items-center justify-center aspect-square">
-              <Wrench className="h-32 w-32 text-primary/40" />
+            <div className="rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+              <img 
+                src={workshopImage} 
+                alt="Professionelle Fahrzeugprüfung in der Werkstatt" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -164,8 +170,12 @@ const Quality = () => {
       <section className="section-padding bg-muted">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl p-8 flex items-center justify-center aspect-square">
-              <Gauge className="h-32 w-32 text-primary/40" />
+            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+              <img 
+                src={tireInspectionImage} 
+                alt="Reifenprüfung mit Profiltiefenmessung" 
+                className="w-full h-full object-cover"
+              />
             </div>
             
             <div className="order-1 lg:order-2">
