@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import heroShowroom from "@/assets/hero-showroom.jpg";
 
 const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,7 +15,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-nordic-gradient min-h-[500px] flex items-center overflow-hidden">
+    <section className="relative min-h-[600px] flex items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={heroShowroom} 
+          alt="Premium Autohaus Showroom" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50" />
+      </div>
+      
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl" />
