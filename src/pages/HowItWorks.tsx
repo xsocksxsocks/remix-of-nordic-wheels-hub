@@ -2,6 +2,10 @@ import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, CreditCard, Truck, ThumbsUp, Car, Shield, CheckCircle } from "lucide-react";
+import stepOrderImage from "@/assets/step-order.jpg";
+import stepPaymentImage from "@/assets/step-payment.jpg";
+import stepDeliveryImage from "@/assets/step-delivery.jpg";
+import stepSatisfactionImage from "@/assets/step-satisfaction.jpg";
 
 const HowItWorks = () => {
   const steps = [
@@ -11,6 +15,7 @@ const HowItWorks = () => {
       subtitle: "Wo Sie das perfekte Auto finden",
       description: "Wir bieten eine breite Palette an Marken und Modellen an. Unser Online-Angebot ermöglicht es Ihnen, jedes Auto mit detaillierten Fotos zu betrachten. Sie sind herzlich eingeladen, uns persönlich zu besuchen und Ihren Kauf vor Ort abzuschließen.",
       features: ["100+ Autos auf Lager", "Geprüft & aufbereitet"],
+      image: stepOrderImage,
     },
     {
       icon: CreditCard,
@@ -18,6 +23,7 @@ const HowItWorks = () => {
       subtitle: "Hier entscheiden Sie, wie Sie bezahlen wollen",
       description: "Keine versteckten Gebühren und Optionen für jeden! Möchten Sie den gesamten Betrag mit einer einzigen Zahlung begleichen? Nach erfolgreicher Überprüfung können Sie bei Übergabe per Banküberweisung zahlen. Wir bieten auch Finanzierungsoptionen an.",
       features: ["Flexible Zahlungsoptionen", "Inzahlungnahme möglich"],
+      image: stepPaymentImage,
     },
     {
       icon: Truck,
@@ -25,6 +31,7 @@ const HowItWorks = () => {
       subtitle: "Wie Sie Ihr Auto entgegennehmen möchten",
       description: "Bei Nordic bieten wir für alle Autos bequeme Liefer- und Abholmöglichkeiten an. Sie können Ihr Fahrzeug bei uns abholen oder wir liefern es direkt zu Ihnen nach Hause. Vor der Auslieferung bereiten wir alle Papiere vor und reinigen Ihr Auto gründlich.",
       features: ["Lieferung nach Hause", "Abholung vor Ort möglich"],
+      image: stepDeliveryImage,
     },
     {
       icon: ThumbsUp,
@@ -32,6 +39,7 @@ const HowItWorks = () => {
       subtitle: "Nur wenn Sie glücklich sind, haben wir einen Deal",
       description: "Wir wollen sicherstellen, dass Sie mit Ihrem neuen Auto ein ideales Erlebnis haben. Wir sind immer bereit, Sie zu unterstützen. Mit unserer Geld-zurück-Garantie können Sie Ihr Auto 21 Tage lang testen und richtig kennenlernen.",
       features: ["Garantie inklusive", "21 Tage Geld-zurück-Garantie"],
+      image: stepSatisfactionImage,
     },
   ];
 
@@ -84,8 +92,12 @@ const HowItWorks = () => {
                   </div>
                 </div>
                 <div className="flex-1 w-full">
-                  <div className="bg-muted rounded-lg aspect-video flex items-center justify-center">
-                    <step.icon className="h-24 w-24 text-muted-foreground/30" />
+                  <div className="rounded-lg overflow-hidden aspect-video">
+                    <img 
+                      src={step.image} 
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
