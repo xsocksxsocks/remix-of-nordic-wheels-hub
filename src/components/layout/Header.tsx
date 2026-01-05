@@ -10,7 +10,7 @@ const Header = () => {
   const navLinks = [
     { href: "/fahrzeuge", label: "Auto kaufen" },
     { href: "/so-funktionierts", label: "So funktioniert's" },
-    { href: "/garantie", label: "Garantie" },
+    { href: "/garantie", label: "Was wir anders machen" },
     { href: "/lieferung", label: "Lieferung" },
     { href: "/qualitaet", label: "Unsere Qualitätsstandards" },
     { href: "/kontakt", label: "Kontakt" },
