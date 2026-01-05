@@ -12,7 +12,7 @@ const Header = () => {
     { href: "/so-funktionierts", label: "So funktioniert's" },
     { href: "/garantie", label: "Garantie" },
     { href: "/lieferung", label: "Lieferung" },
-    { href: "/qualitaet", label: "Qualität" },
+    { href: "/qualitaet", label: "Unsere Qualitätsstandards" },
     { href: "/kontakt", label: "Kontakt" },
   ];
 
@@ -36,9 +36,7 @@ const Header = () => {
                 key={link.href}
                 to={link.href}
                 className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
-                  isActive(link.href)
-                    ? "text-white bg-white/20"
-                    : "text-white/90 hover:text-white hover:bg-white/10"
+                  isActive(link.href) ? "text-white bg-white/20" : "text-white/90 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {link.label}
@@ -48,14 +46,14 @@ const Header = () => {
 
           {/* Right side - Contact & Menu */}
           <div className="flex items-center gap-4">
-            <a 
-              href="tel:+4910000000" 
+            <a
+              href="tel:+4910000000"
               className="hidden md:flex items-center gap-2 text-white/90 hover:text-white transition-colors text-sm font-medium"
             >
               <Phone className="h-4 w-4" />
               <span>+49 100 000 00</span>
             </a>
-            
+
             {/* Mobile menu button */}
             <Button
               variant="ghost"
@@ -79,16 +77,14 @@ const Header = () => {
                 to={link.href}
                 onClick={() => setIsMenuOpen(false)}
                 className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  isActive(link.href)
-                    ? "text-white bg-white/20"
-                    : "text-white/90 hover:text-white hover:bg-white/10"
+                  isActive(link.href) ? "text-white bg-white/20" : "text-white/90 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <a 
-              href="tel:+4910000000" 
+            <a
+              href="tel:+4910000000"
               className="flex items-center gap-2 px-4 py-3 text-white/90 hover:text-white transition-colors text-sm font-medium"
             >
               <Phone className="h-4 w-4" />
