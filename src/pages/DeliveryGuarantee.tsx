@@ -1,7 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Truck, Clock, FileText, Phone, CheckCircle, Shield, RotateCcw, Banknote, AlertCircle, Car, Wrench } from "lucide-react";
+import { Truck, Clock, FileText, Phone, CheckCircle, Shield, RotateCcw, Banknote, AlertCircle, Car, Wrench, MapPin, Award, Star } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -20,13 +20,22 @@ const DeliveryGuarantee = () => {
       answer: "Sie brauchen nur Ihren Personalausweis und bei Zahlung bei Übergabe Zugang zu Ihrem Online-Banking-Konto.",
     },
     {
-      question: "Wie lange dauert die Rückerstattung?",
-      answer: "Nach Abholung des Fahrzeugs erhalten Sie die volle Rückerstattung innerhalb von 5 Werktagen.",
+      question: "Wie funktioniert die 21-Tage Geld-zurück-Garantie?",
+      answer: "Innerhalb von 21 Tagen nach Übergabe können Sie das Fahrzeug zurückgeben. Für gefahrene Kilometer werden €0,30 pro km berechnet. Bei nicht vertragsgemäßem Zustand erfolgt die Rückgabe kostenlos.",
     },
     {
-      question: "Welche Mängel berechtigen zur Rückgabe?",
-      answer: "Fehlende Ausstattungsmerkmale, optische Mängel, technische Defekte oder jede Abweichung vom vertraglich vereinbarten Zustand berechtigen zur kostenlosen Rückgabe.",
+      question: "Was ist der Unterschied zwischen Nordic Garantie und Premium Garantie?",
+      answer: "Die Nordic Garantie (1 Jahr oder 10.000 km) ist bei jedem Fahrzeug inklusive. Die Premium Garantie (3 Jahre oder 60.000 km) können Sie zusätzlich erwerben für erweiterten Schutz.",
     },
+    {
+      question: "Welche Mängel berechtigen zur kostenlosen Rückgabe?",
+      answer: "Fehlende Ausstattungsmerkmale, optische Mängel, technische Defekte oder jede Abweichung vom vertraglich vereinbarten Zustand berechtigen zur kostenlosen Rückgabe ohne Kilometer-Abzug.",
+    },
+  ];
+
+  const shippingLocations = [
+    "Hamburg", "Berlin", "München", "Köln", "Frankfurt", "Stuttgart", 
+    "Düsseldorf", "Leipzig", "Hannover", "Nürnberg", "Dresden", "Bremen"
   ];
 
   return (
@@ -40,7 +49,7 @@ const DeliveryGuarantee = () => {
             </h1>
             <p className="text-lg text-white/90 mb-8">
               Jedes Fahrzeug wird optisch und technisch geprüft, professionell aufbereitet und 
-              per Einzeltransport sicher zu Ihnen geliefert. Nicht zufrieden? Volle Rückerstattung.
+              per Einzeltransport sicher zu Ihnen geliefert. Mit umfassenden Garantieleistungen.
             </p>
             <Button asChild size="lg" className="btn-hero">
               <Link to="/fahrzeuge">Finde dein Auto</Link>
@@ -102,126 +111,249 @@ const DeliveryGuarantee = () => {
         </div>
       </section>
 
-      {/* Guarantee Section */}
+      {/* Shipping Locations */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-4">Unsere Garantie</h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Entspricht das Fahrzeug nicht dem vertraglich vereinbarten Zustand? 
-            Kein Problem – Sie erhalten die volle Rückerstattung.
-          </p>
+          <div className="text-center mb-12">
+            <div className="p-4 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
+              <MapPin className="h-10 w-10 text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold mb-4">Versandstandorte in ganz Deutschland</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Wir liefern deutschlandweit direkt zu Ihnen nach Hause. 
+              Unsere Logistikpartner sind in allen Regionen für Sie im Einsatz.
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-card rounded-xl border">
-              <div className="p-4 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
-                <Shield className="h-10 w-10 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Rücktrittsrecht</h3>
-              <p className="text-muted-foreground">
-                Bei nicht vertragsgemäßem Zustand – kostenlose Rückabwicklung
-              </p>
-            </div>
-            <div className="text-center p-6 bg-card rounded-xl border">
-              <div className="p-4 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
-                <RotateCcw className="h-10 w-10 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Kostenlose Abholung</h3>
-              <p className="text-muted-foreground">
-                Wir holen das Fahrzeug bei Ihnen ab – ohne zusätzliche Kosten
-              </p>
-            </div>
-            <div className="text-center p-6 bg-card rounded-xl border">
-              <div className="p-4 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
-                <Banknote className="h-10 w-10 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Schnelle Erstattung</h3>
-              <p className="text-muted-foreground">
-                Volle Rückerstattung innerhalb von 5 Werktagen
-              </p>
-            </div>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {shippingLocations.map((city) => (
+              <span key={city} className="px-4 py-2 bg-card rounded-full border text-sm font-medium">
+                {city}
+              </span>
+            ))}
+            <span className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium">
+              + viele weitere
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Return Conditions */}
+      {/* 21-Day Money Back Guarantee */}
       <section className="section-padding">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-12">Rückgabebedingungen</h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">
+              <RotateCcw className="h-4 w-4" />
+              21 Tage Rückgaberecht
+            </div>
+            <h2 className="text-3xl font-bold mb-4">21-Tage Geld-zurück-Garantie</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Testen Sie Ihr neues Fahrzeug in Ruhe. Innerhalb von 21 Tagen können Sie 
+              es zurückgeben – mit fairer Kilometer-Abrechnung.
+            </p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="p-6 bg-card rounded-xl border">
-              <h3 className="text-xl font-bold mb-4">Rückgabegründe</h3>
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                So funktioniert's
+              </h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Fehlende Ausstattungsmerkmale</span>
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">21 Tage Bedenkzeit nach Fahrzeugübergabe</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Optische Mängel (Lack, Innenraum)</span>
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">Rückgabe ohne Angabe von Gründen möglich</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Technische Defekte</span>
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">Kostenlose Abholung bei Ihnen zu Hause</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Abweichung vom Vertragszustand</span>
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">Rückerstattung innerhalb von 5 Werktagen</span>
                 </li>
               </ul>
             </div>
             
             <div className="p-6 bg-card rounded-xl border">
-              <h3 className="text-xl font-bold mb-4">Kilometer-Abrechnung</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">
-                    Mehr gefahrene Kilometer: <strong>€0,30 pro km</strong>
-                  </span>
-                </li>
-              </ul>
-              <p className="text-sm text-muted-foreground mt-4">
-                Für jeden zusätzlich gefahrenen Kilometer über den Stand bei Übergabe 
-                wird eine Pauschale von €0,30 berechnet.
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-amber-600" />
+                Kilometer-Abrechnung
+              </h3>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                <p className="text-2xl font-bold text-amber-800">€0,30 <span className="text-lg font-normal">pro km</span></p>
+              </div>
+              <p className="text-muted-foreground">
+                Für jeden gefahrenen Kilometer über den Stand bei Übergabe wird eine 
+                Pauschale von €0,30 berechnet. Fair und transparent.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process Timeline */}
+      {/* Return due to defects */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            So läuft die Rückabwicklung
-          </h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium mb-4">
+              <Shield className="h-4 w-4" />
+              Rücktrittsrecht bei Mängeln
+            </div>
+            <h2 className="text-3xl font-bold mb-4">Rücktritt bei nicht vertragsgemäßem Zustand</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Entspricht das Fahrzeug nicht dem vereinbarten Zustand? 
+              Dann erfolgt die Rückabwicklung kostenlos – ohne Kilometer-Abzug.
+            </p>
+          </div>
           
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+            <div className="p-6 bg-card rounded-xl border text-center">
+              <CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h4 className="font-semibold mb-2">Fehlende Ausstattung</h4>
+              <p className="text-sm text-muted-foreground">
+                Versprochene Features nicht vorhanden
+              </p>
+            </div>
+            <div className="p-6 bg-card rounded-xl border text-center">
+              <CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h4 className="font-semibold mb-2">Optische Mängel</h4>
+              <p className="text-sm text-muted-foreground">
+                Kratzer, Dellen, Lackschäden
+              </p>
+            </div>
+            <div className="p-6 bg-card rounded-xl border text-center">
+              <CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h4 className="font-semibold mb-2">Technische Defekte</h4>
+              <p className="text-sm text-muted-foreground">
+                Motor, Getriebe, Elektronik
+              </p>
+            </div>
+            <div className="p-6 bg-card rounded-xl border text-center">
+              <CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h4 className="font-semibold mb-2">Vertragsabweichung</h4>
+              <p className="text-sm text-muted-foreground">
+                Jede Abweichung vom Vertrag
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card p-8 rounded-xl border shadow-sm">
+            <div className="bg-card p-8 rounded-xl border shadow-sm text-center">
               <div className="text-4xl font-bold text-primary mb-4">1</div>
-              <h3 className="text-xl font-bold mb-4">Melden Sie den Mangel</h3>
+              <h3 className="text-xl font-bold mb-4">Mangel melden</h3>
               <p className="text-muted-foreground">
-                Kontaktieren Sie uns und schildern Sie den nicht vertragsgemäßen Zustand. 
-                Wir vereinbaren umgehend einen Abholtermin.
+                Kontaktieren Sie uns mit einer Beschreibung des Problems. Wir vereinbaren sofort einen Termin.
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl border shadow-sm">
+            <div className="bg-card p-8 rounded-xl border shadow-sm text-center">
               <div className="text-4xl font-bold text-primary mb-4">2</div>
               <h3 className="text-xl font-bold mb-4">Kostenlose Abholung</h3>
               <p className="text-muted-foreground">
-                Wir holen das Fahrzeug bei Ihnen ab – ohne zusätzliche Kosten. 
-                Die Kilometer-Pauschale wird ggf. verrechnet.
+                Wir holen das Fahrzeug bei Ihnen ab – komplett kostenfrei, ohne Kilometer-Abzug.
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl border shadow-sm">
+            <div className="bg-card p-8 rounded-xl border shadow-sm text-center">
               <div className="text-4xl font-bold text-primary mb-4">3</div>
               <h3 className="text-xl font-bold mb-4">Volle Rückerstattung</h3>
               <p className="text-muted-foreground">
-                Sie erhalten Ihre vollständige Zahlung innerhalb von 5 Werktagen 
-                nach Abholung zurück auf Ihr Konto.
+                Ihr Geld zurück innerhalb von 5 Werktagen nach Abholung – garantiert.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Warranty Section */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Unsere Garantiepakete</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Zusätzlich zum Rückgaberecht bieten wir umfassende Garantieleistungen 
+              für Ihr Fahrzeug – für langfristige Sicherheit.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Nordic Garantie */}
+            <div className="p-8 bg-card rounded-xl border relative overflow-hidden">
+              <div className="absolute top-4 right-4">
+                <span className="px-3 py-1 bg-primary text-primary-foreground rounded-full text-xs font-medium">
+                  Inklusive
+                </span>
+              </div>
+              <div className="p-4 rounded-xl bg-primary/10 w-fit mb-6">
+                <Shield className="h-10 w-10 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Nordic Garantie</h3>
+              <p className="text-3xl font-bold text-primary mb-4">
+                1 Jahr <span className="text-lg font-normal text-muted-foreground">oder 10.000 km</span>
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Bei jedem Fahrzeug inklusive</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Abdeckung wichtiger Komponenten</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Schnelle Schadensabwicklung</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Deutschlandweiter Service</span>
+                </li>
+              </ul>
+              <p className="text-sm text-muted-foreground">
+                Standardmäßig bei jedem Kauf dabei – ohne Aufpreis.
+              </p>
+            </div>
+            
+            {/* Premium Garantie */}
+            <div className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border-2 border-primary relative overflow-hidden">
+              <div className="absolute top-4 right-4">
+                <span className="px-3 py-1 bg-amber-500 text-white rounded-full text-xs font-medium flex items-center gap-1">
+                  <Star className="h-3 w-3" />
+                  Premium
+                </span>
+              </div>
+              <div className="p-4 rounded-xl bg-primary/10 w-fit mb-6">
+                <Award className="h-10 w-10 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Premium Garantie</h3>
+              <p className="text-3xl font-bold text-primary mb-4">
+                3 Jahre <span className="text-lg font-normal text-muted-foreground">oder 60.000 km</span>
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Erweiterter Komponentenschutz</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Inklusive Verschleißteile</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Mobilitätsgarantie inklusive</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">Prioritärer Kundenservice</span>
+                </li>
+              </ul>
+              <p className="text-sm text-muted-foreground">
+                Optional beim Kauf hinzubuchbar – für maximale Sicherheit.
               </p>
             </div>
           </div>
@@ -229,7 +361,7 @@ const DeliveryGuarantee = () => {
       </section>
 
       {/* Delivery Info */}
-      <section className="section-padding">
+      <section className="section-padding bg-muted">
         <div className="container">
           <h2 className="text-3xl font-bold mb-8">Lieferdetails</h2>
           
@@ -278,7 +410,7 @@ const DeliveryGuarantee = () => {
       </section>
 
       {/* FAQs */}
-      <section className="section-padding bg-muted">
+      <section className="section-padding">
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">Häufig gestellte Fragen</h2>
           
@@ -303,10 +435,11 @@ const DeliveryGuarantee = () => {
       <section className="section-padding bg-nordic-gradient">
         <div className="container text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Sicher kaufen – ohne Risiko
+            Sicher kaufen – rundum geschützt
           </h2>
           <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Geprüft, aufbereitet und sicher geliefert. Bei Mängeln: Volle Rückerstattung in 5 Werktagen.
+            21 Tage Geld-zurück-Garantie, Nordic Garantie inklusive und optional Premium Garantie. 
+            Deutschlandweite Lieferung direkt zu Ihnen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="btn-hero">
