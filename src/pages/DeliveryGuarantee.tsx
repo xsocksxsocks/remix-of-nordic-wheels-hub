@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import carTransportImage from "@/assets/car-transport.jpg";
 
 const DeliveryGuarantee = () => {
   const faqs = [
@@ -360,13 +361,12 @@ const DeliveryGuarantee = () => {
         </div>
       </section>
 
-      {/* Delivery Info */}
+      {/* Delivery Info with Image */}
       <section className="section-padding bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">Lieferdetails</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
             <div>
+              <h2 className="text-3xl font-bold mb-8">Lieferdetails</h2>
               <p className="text-foreground mb-6">
                 Nach Ihrer Bestellung bereiten wir das Fahrzeug sorgfältig vor. 
                 Die technische und optische Prüfung sowie die Aufbereitung dauern 
@@ -382,27 +382,35 @@ const DeliveryGuarantee = () => {
               </p>
             </div>
             
-            <div className="space-y-4">
-              <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
-                <Clock className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold mb-1">Vorbereitungszeit</h4>
-                  <p className="text-sm text-muted-foreground">3-7 Werktage für Prüfung und Aufbereitung</p>
-                </div>
+            <div className="rounded-2xl overflow-hidden">
+              <img 
+                src={carTransportImage} 
+                alt="Sichere Fahrzeuglieferung per Einzeltransport" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
+              <Clock className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Vorbereitungszeit</h4>
+                <p className="text-sm text-muted-foreground">3-7 Werktage für Prüfung und Aufbereitung</p>
               </div>
-              <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
-                <Truck className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold mb-1">Einzeltransport</h4>
-                  <p className="text-sm text-muted-foreground">Geschützter Transport auf geschlossenem Anhänger</p>
-                </div>
+            </div>
+            <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
+              <Truck className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Einzeltransport</h4>
+                <p className="text-sm text-muted-foreground">Geschützter Transport auf geschlossenem Anhänger</p>
               </div>
-              <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
-                <FileText className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold mb-1">Vollständige Dokumentation</h4>
-                  <p className="text-sm text-muted-foreground">Alle Papiere vorbereitet und übergabebereit</p>
-                </div>
+            </div>
+            <div className="p-4 bg-card rounded-xl flex items-start gap-4 border">
+              <FileText className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Vollständige Dokumentation</h4>
+                <p className="text-sm text-muted-foreground">Alle Papiere vorbereitet und übergabebereit</p>
               </div>
             </div>
           </div>
