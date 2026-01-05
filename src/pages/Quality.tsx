@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import workshopImage from "@/assets/workshop-inspection.jpg";
 import tireInspectionImage from "@/assets/tire-inspection.jpg";
+import carPreparationImage from "@/assets/car-preparation.jpg";
 
 const Quality = () => {
   const qualityPromises = [
@@ -250,8 +251,12 @@ const Quality = () => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl p-8 flex items-center justify-center aspect-square">
-              <Sparkles className="h-32 w-32 text-primary/40" />
+            <div className="rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+              <img 
+                src={carPreparationImage} 
+                alt="Professionelle Fahrzeugaufbereitung" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
