@@ -1,16 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Car } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import dreamCar from "@/assets/dream-car.jpg";
 
 const CTA = () => {
   return (
     <section className="section-padding">
       <div className="container">
-        <div className="bg-nordic-gradient rounded-2xl overflow-hidden">
-          <div className="px-8 py-16 md:px-16 md:py-20 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-accent rounded-xl mb-6">
-              <Car className="h-8 w-8 text-white" />
-            </div>
+        <div className="rounded-2xl overflow-hidden relative">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={dreamCar} 
+              alt="Traumauto auf Landstraße" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/60" />
+          </div>
+          
+          {/* Content */}
+          <div className="relative px-8 py-16 md:px-16 md:py-20 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Finden Sie Ihr Traumauto
             </h2>
