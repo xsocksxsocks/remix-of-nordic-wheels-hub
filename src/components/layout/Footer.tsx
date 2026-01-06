@@ -104,7 +104,7 @@ const Footer = () => {
         <div className="mt-10 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
             <Link to="/">
-              <img src={nordicLogo} alt="Nordic Automobile" className="h-8" />
+              <img src={nordicLogo} alt="Nordic Automobile" className="h-12" />
             </Link>
             <div className="flex items-center gap-6">
               <Link to="/impressum" className="hover:text-white transition-colors">
