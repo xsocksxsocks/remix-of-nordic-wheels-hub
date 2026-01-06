@@ -1,13 +1,48 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Search } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Search, Car } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import heroShowroom from "@/assets/hero-showroom.jpg";
+import { supabase } from "@/integrations/supabase/client";
+
+interface CarSuggestion {
+  id: string;
+  brand: string;
+  name: string;
+  price: number;
+  image_url: string | null;
+}
 
 const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<CarSuggestion[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      const { data } = await supabase
+        .from("cars")
+        .select("id, brand, name, price, image_url")
+        .eq("status", "available")
+        .limit(10);
+      
+      if (data && data.length > 0) {
+        // Shuffle and take up to 3 random cars
+        const shuffled = [...data].sort(() => 0.5 - Math.random());
+        setSuggestions(shuffled.slice(0, 3));
+      }
+    };
+    fetchSuggestions();
+  }, []);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +97,7 @@ const Hero = () => {
           </form>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button asChild size="lg" className="btn-hero">
               <Link to="/fahrzeuge">
                 Finde dein Auto
@@ -75,6 +110,30 @@ const Hero = () => {
               </Link>
             </Button>
           </div>
+
+          {/* Car Suggestions */}
+          {suggestions.length > 0 && (
+            <div className="mt-8">
+              <p className="text-white/80 text-sm mb-4">Aktuelle Fahrzeuge:</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {suggestions.map((car) => (
+                  <Link
+                    key={car.id}
+                    to={`/fahrzeuge?search=${encodeURIComponent(car.name)}`}
+                    className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm transition-colors"
+                  >
+                    {car.image_url ? (
+                      <img src={car.image_url} alt={car.name} className="w-6 h-6 rounded-full object-cover" />
+                    ) : (
+                      <Car className="w-4 h-4" />
+                    )}
+                    <span className="font-medium">{car.brand} {car.name}</span>
+                    <span className="text-white/70">{formatPrice(car.price)}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

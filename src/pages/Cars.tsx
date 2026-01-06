@@ -167,8 +167,8 @@ const Cars = () => {
       <section className="section-padding">
         <div className="container">
           {/* Search */}
-          <div className="mb-8 max-w-md">
-            <div className="relative">
+          <div className="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="relative max-w-md w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 placeholder="Fahrzeug suchen..."
@@ -176,6 +176,25 @@ const Cars = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 className="pl-10"
               />
+            </div>
+            <div className="flex items-center gap-4">
+              {search && (
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => {
+                    setSearch("");
+                    setSearchParams({});
+                  }}
+                >
+                  Suche zurücksetzen
+                </Button>
+              )}
+              {!loading && (
+                <span className="text-sm text-muted-foreground whitespace-nowrap">
+                  {filteredCars.length} {filteredCars.length === 1 ? "Fahrzeug" : "Fahrzeuge"} gefunden
+                </span>
+              )}
             </div>
           </div>
 
