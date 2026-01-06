@@ -1,11 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Layout from "@/components/layout/Layout";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Car, ExternalLink, Search } from "lucide-react";
+import { Car, ExternalLink, Search, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface CarItem {
   id: string;
@@ -27,6 +34,9 @@ const Cars = () => {
   const [cars, setCars] = useState<CarItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [brandFilter, setBrandFilter] = useState<string>("all");
+  const [priceFilter, setPriceFilter] = useState<string>("all");
+  const [yearFilter, setYearFilter] = useState<string>("all");
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -44,14 +54,59 @@ const Cars = () => {
     fetchCars();
   }, []);
 
-  const filteredCars = cars.filter((car) => {
-    const searchLower = search.toLowerCase();
-    return (
-      car.brand.toLowerCase().includes(searchLower) ||
-      car.model.toLowerCase().includes(searchLower) ||
-      car.name.toLowerCase().includes(searchLower)
-    );
-  });
+  // Get unique brands for filter
+  const brands = useMemo(() => {
+    const uniqueBrands = [...new Set(cars.map((car) => car.brand))];
+    return uniqueBrands.sort();
+  }, [cars]);
+
+  // Get unique years for filter
+  const years = useMemo(() => {
+    const uniqueYears = [...new Set(cars.map((car) => car.year).filter(Boolean))] as number[];
+    return uniqueYears.sort((a, b) => b - a);
+  }, [cars]);
+
+  const hasActiveFilters = search || brandFilter !== "all" || priceFilter !== "all" || yearFilter !== "all";
+
+  const resetAllFilters = () => {
+    setSearch("");
+    setBrandFilter("all");
+    setPriceFilter("all");
+    setYearFilter("all");
+    setSearchParams({});
+  };
+
+  const filteredCars = useMemo(() => {
+    return cars.filter((car) => {
+      // Text search
+      const searchLower = search.toLowerCase();
+      const matchesSearch =
+        car.brand.toLowerCase().includes(searchLower) ||
+        car.model.toLowerCase().includes(searchLower) ||
+        car.name.toLowerCase().includes(searchLower);
+
+      // Brand filter
+      const matchesBrand = brandFilter === "all" || car.brand === brandFilter;
+
+      // Price filter
+      let matchesPrice = true;
+      if (priceFilter === "under10k") matchesPrice = car.price < 10000;
+      else if (priceFilter === "10k-20k") matchesPrice = car.price >= 10000 && car.price < 20000;
+      else if (priceFilter === "20k-30k") matchesPrice = car.price >= 20000 && car.price < 30000;
+      else if (priceFilter === "30k-50k") matchesPrice = car.price >= 30000 && car.price < 50000;
+      else if (priceFilter === "over50k") matchesPrice = car.price >= 50000;
+
+      // Year filter
+      let matchesYear = true;
+      if (yearFilter !== "all" && car.year) {
+        matchesYear = car.year === parseInt(yearFilter);
+      } else if (yearFilter !== "all" && !car.year) {
+        matchesYear = false;
+      }
+
+      return matchesSearch && matchesBrand && matchesPrice && matchesYear;
+    });
+  }, [cars, search, brandFilter, priceFilter, yearFilter]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("de-DE", {
@@ -166,35 +221,81 @@ const Cars = () => {
 
       <section className="section-padding">
         <div className="container">
-          {/* Search */}
-          <div className="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="relative max-w-md w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                placeholder="Fahrzeug suchen..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-10"
-              />
+          {/* Filters */}
+          <div className="mb-8 space-y-4">
+            {/* Search row */}
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <div className="relative max-w-md w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  placeholder="Fahrzeug suchen..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                {hasActiveFilters && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={resetAllFilters}
+                  >
+                    <X className="h-4 w-4 mr-1" />
+                    Filter zurücksetzen
+                  </Button>
+                )}
+                {!loading && (
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {filteredCars.length} {filteredCars.length === 1 ? "Fahrzeug" : "Fahrzeuge"} gefunden
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              {search && (
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={() => {
-                    setSearch("");
-                    setSearchParams({});
-                  }}
-                >
-                  Suche zurücksetzen
-                </Button>
-              )}
-              {!loading && (
-                <span className="text-sm text-muted-foreground whitespace-nowrap">
-                  {filteredCars.length} {filteredCars.length === 1 ? "Fahrzeug" : "Fahrzeuge"} gefunden
-                </span>
-              )}
+
+            {/* Filter dropdowns */}
+            <div className="flex flex-wrap gap-3">
+              <Select value={brandFilter} onValueChange={setBrandFilter}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Marke" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Alle Marken</SelectItem>
+                  {brands.map((brand) => (
+                    <SelectItem key={brand} value={brand}>
+                      {brand}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={priceFilter} onValueChange={setPriceFilter}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Preis" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Alle Preise</SelectItem>
+                  <SelectItem value="under10k">Unter 10.000 €</SelectItem>
+                  <SelectItem value="10k-20k">10.000 - 20.000 €</SelectItem>
+                  <SelectItem value="20k-30k">20.000 - 30.000 €</SelectItem>
+                  <SelectItem value="30k-50k">30.000 - 50.000 €</SelectItem>
+                  <SelectItem value="over50k">Über 50.000 €</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select value={yearFilter} onValueChange={setYearFilter}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Baujahr" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Alle Baujahre</SelectItem>
+                  {years.map((year) => (
+                    <SelectItem key={year} value={year.toString()}>
+                      {year}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
