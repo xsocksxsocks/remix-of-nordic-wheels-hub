@@ -116,6 +116,17 @@ const AdminCars = () => {
     setDialogOpen(true);
   };
 
+  // Validate URL to only allow http/https schemes (prevents javascript: URLs)
+  const isValidUrl = (url: string): boolean => {
+    if (!url) return true; // Empty is allowed
+    try {
+      const parsed = new URL(url);
+      return ['http:', 'https:'].includes(parsed.protocol);
+    } catch {
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -123,6 +134,25 @@ const AdminCars = () => {
       toast({
         title: "Fehler",
         description: "Bitte füllen Sie alle Pflichtfelder aus.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate URLs to prevent XSS via javascript: or data: URLs
+    if (formData.image_url && !isValidUrl(formData.image_url)) {
+      toast({
+        title: "Fehler",
+        description: "Bild-URL muss eine gültige HTTP/HTTPS URL sein.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.external_link && !isValidUrl(formData.external_link)) {
+      toast({
+        title: "Fehler",
+        description: "Externer Link muss eine gültige HTTP/HTTPS URL sein.",
         variant: "destructive",
       });
       return;
