@@ -21,10 +21,10 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-nordic-gradient shadow-md">
       <div className="container">
-        <nav className="flex items-center justify-between h-16">
+        <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/">
-            <img src={nordicLogo} alt="Nordic Automobile" className="h-10" />
+            <img src={nordicLogo} alt="Nordic Automobile" className="h-14" />
           </Link>
 
           {/* Desktop Navigation */}
