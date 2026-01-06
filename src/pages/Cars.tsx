@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import Layout from "@/components/layout/Layout";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Car, ExternalLink, Search, X } from "lucide-react";
+import { Car, ExternalLink, Search, X, ArrowUpDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -37,6 +37,7 @@ const Cars = () => {
   const [brandFilter, setBrandFilter] = useState<string>("all");
   const [priceFilter, setPriceFilter] = useState<string>("all");
   const [yearFilter, setYearFilter] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("newest");
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -66,18 +67,19 @@ const Cars = () => {
     return uniqueYears.sort((a, b) => b - a);
   }, [cars]);
 
-  const hasActiveFilters = search || brandFilter !== "all" || priceFilter !== "all" || yearFilter !== "all";
+  const hasActiveFilters = search || brandFilter !== "all" || priceFilter !== "all" || yearFilter !== "all" || sortBy !== "newest";
 
   const resetAllFilters = () => {
     setSearch("");
     setBrandFilter("all");
     setPriceFilter("all");
     setYearFilter("all");
+    setSortBy("newest");
     setSearchParams({});
   };
 
-  const filteredCars = useMemo(() => {
-    return cars.filter((car) => {
+  const filteredAndSortedCars = useMemo(() => {
+    let result = cars.filter((car) => {
       // Text search
       const searchLower = search.toLowerCase();
       const matchesSearch =
@@ -106,7 +108,32 @@ const Cars = () => {
 
       return matchesSearch && matchesBrand && matchesPrice && matchesYear;
     });
-  }, [cars, search, brandFilter, priceFilter, yearFilter]);
+
+    // Sorting
+    switch (sortBy) {
+      case "price-asc":
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case "year-desc":
+        result.sort((a, b) => (b.year || 0) - (a.year || 0));
+        break;
+      case "year-asc":
+        result.sort((a, b) => (a.year || 0) - (b.year || 0));
+        break;
+      case "mileage-asc":
+        result.sort((a, b) => (a.mileage || 0) - (b.mileage || 0));
+        break;
+      case "mileage-desc":
+        result.sort((a, b) => (b.mileage || 0) - (a.mileage || 0));
+        break;
+      // "newest" is default - already sorted by created_at from DB
+    }
+
+    return result;
+  }, [cars, search, brandFilter, priceFilter, yearFilter, sortBy]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("de-DE", {
@@ -247,7 +274,7 @@ const Cars = () => {
                 )}
                 {!loading && (
                   <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {filteredCars.length} {filteredCars.length === 1 ? "Fahrzeug" : "Fahrzeuge"} gefunden
+                    {filteredAndSortedCars.length} {filteredAndSortedCars.length === 1 ? "Fahrzeug" : "Fahrzeuge"} gefunden
                   </span>
                 )}
               </div>
@@ -296,6 +323,22 @@ const Cars = () => {
                   ))}
                 </SelectContent>
               </Select>
+
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[180px]">
+                  <ArrowUpDown className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Sortieren" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">Neueste zuerst</SelectItem>
+                  <SelectItem value="price-asc">Preis aufsteigend</SelectItem>
+                  <SelectItem value="price-desc">Preis absteigend</SelectItem>
+                  <SelectItem value="year-desc">Baujahr neueste</SelectItem>
+                  <SelectItem value="year-asc">Baujahr älteste</SelectItem>
+                  <SelectItem value="mileage-asc">Kilometerstand ↑</SelectItem>
+                  <SelectItem value="mileage-desc">Kilometerstand ↓</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
@@ -312,9 +355,9 @@ const Cars = () => {
                 </div>
               ))}
             </div>
-          ) : filteredCars.length > 0 ? (
+          ) : filteredAndSortedCars.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCars.map((car) => (
+              {filteredAndSortedCars.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}
             </div>
