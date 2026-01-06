@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import nordicLogo from "@/assets/nordic-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,10 +23,8 @@ const Header = () => {
       <div className="container">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="bg-white rounded-lg px-3 py-1.5">
-              <span className="text-xl font-extrabold text-primary tracking-tight">NORDIC</span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img src={nordicLogo} alt="Nordic Automobile" className="h-10 rounded" />
           </Link>
 
           {/* Desktop Navigation */}
