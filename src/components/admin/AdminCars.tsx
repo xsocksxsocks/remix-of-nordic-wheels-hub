@@ -127,6 +127,31 @@ const AdminCars = () => {
     }
   };
 
+  // Validate numeric inputs with reasonable ranges
+  const validateNumericInputs = (): string | null => {
+    const price = parseInt(formData.price);
+    if (isNaN(price) || price <= 0 || price > 100000000) {
+      return "Preis muss zwischen 1 und 100.000.000 € liegen.";
+    }
+
+    if (formData.year) {
+      const year = parseInt(formData.year);
+      const currentYear = new Date().getFullYear();
+      if (isNaN(year) || year < 1900 || year > currentYear + 1) {
+        return `Baujahr muss zwischen 1900 und ${currentYear + 1} liegen.`;
+      }
+    }
+
+    if (formData.mileage) {
+      const mileage = parseInt(formData.mileage);
+      if (isNaN(mileage) || mileage < 0 || mileage > 10000000) {
+        return "Kilometerstand muss zwischen 0 und 10.000.000 km liegen.";
+      }
+    }
+
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -153,6 +178,17 @@ const AdminCars = () => {
       toast({
         title: "Fehler",
         description: "Externer Link muss eine gültige HTTP/HTTPS URL sein.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate numeric inputs
+    const numericError = validateNumericInputs();
+    if (numericError) {
+      toast({
+        title: "Fehler",
+        description: numericError,
         variant: "destructive",
       });
       return;
