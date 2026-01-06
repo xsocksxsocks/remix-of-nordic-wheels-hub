@@ -11,6 +11,7 @@ import {
 import workshopImage from "@/assets/workshop-inspection.jpg";
 import tireInspectionImage from "@/assets/tire-inspection.jpg";
 import carPreparationImage from "@/assets/car-preparation.jpg";
+import conditionDocImage from "@/assets/condition-documentation.jpg";
 
 const Quality = () => {
   const qualityPromises = [
@@ -298,8 +299,12 @@ const Quality = () => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl p-8 flex items-center justify-center aspect-square">
-              <Camera className="h-32 w-32 text-primary/40" />
+            <div className="rounded-2xl overflow-hidden aspect-square">
+              <img 
+                src={conditionDocImage} 
+                alt="Digitale Zustandsdokumentation mit Tablet" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
