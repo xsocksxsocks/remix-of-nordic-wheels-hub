@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Car, ExternalLink, Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,9 +23,10 @@ interface CarItem {
 }
 
 const Cars = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState<CarItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
     const fetchCars = async () => {
