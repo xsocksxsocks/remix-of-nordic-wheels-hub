@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
+import nordicLogo from "@/assets/nordic-logo.png";
 
 const Footer = () => {
   return (
@@ -102,10 +103,8 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-10 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-            <div className="flex items-center gap-2">
-              <div className="bg-white rounded px-2 py-1">
-                <span className="font-bold text-primary text-xs">NORDIC</span>
-              </div>
+            <div className="flex items-center gap-3">
+              <img src={nordicLogo} alt="Nordic Automobile" className="h-8 rounded" />
               <span>Nordic-Automobile cnr GmbH</span>
             </div>
             <div className="flex items-center gap-6">
