@@ -68,7 +68,8 @@ const Admin = () => {
     navigate("/admin/login");
   };
 
-  if (loading) {
+  // Show loading state while checking auth and admin status to prevent UI flash
+  if (loading || isAdmin === null) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="animate-pulse text-muted-foreground">Laden...</div>

@@ -75,13 +75,27 @@ const Cars = () => {
     }
   };
 
+  // Validate URL to only allow http/https schemes (prevents javascript: URLs)
+  const isValidUrl = (url: string | null): boolean => {
+    if (!url) return false;
+    try {
+      const parsed = new URL(url);
+      return ['http:', 'https:'].includes(parsed.protocol);
+    } catch {
+      return false;
+    }
+  };
+
   const CarCard = ({ car }: { car: CarItem }) => {
+    const hasValidImageUrl = isValidUrl(car.image_url);
+    const hasValidExternalLink = isValidUrl(car.external_link);
+
     const content = (
       <div className="bg-card rounded-lg border shadow-soft overflow-hidden card-hover h-full">
         <div className="aspect-video bg-muted relative">
-          {car.image_url ? (
+          {hasValidImageUrl ? (
             <img
-              src={car.image_url}
+              src={car.image_url!}
               alt={car.name}
               className="w-full h-full object-cover"
             />
@@ -106,7 +120,7 @@ const Cars = () => {
             {car.fuel_type && <div>{car.fuel_type}</div>}
             {car.transmission && <div>{car.transmission}</div>}
           </div>
-          {car.external_link && car.status === "available" && (
+          {hasValidExternalLink && car.status === "available" && (
             <div className="mt-4 flex items-center text-sm text-accent">
               <ExternalLink className="h-4 w-4 mr-1" />
               Details auf mobile.de
@@ -116,10 +130,10 @@ const Cars = () => {
       </div>
     );
 
-    if (car.external_link && car.status === "available") {
+    if (hasValidExternalLink && car.status === "available") {
       return (
         <a
-          href={car.external_link}
+          href={car.external_link!}
           target="_blank"
           rel="noopener noreferrer"
           className="block"

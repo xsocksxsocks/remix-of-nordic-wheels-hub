@@ -76,15 +76,10 @@ const AdminLogin = () => {
         navigate("/admin");
       }
     } catch (error: any) {
-      let message = "Ein Fehler ist aufgetreten.";
-      if (error.message?.includes("Invalid login credentials")) {
-        message = "Ungültige Anmeldedaten.";
-      } else if (error.message?.includes("User already registered")) {
-        message = "Diese E-Mail ist bereits registriert.";
-      }
+      // Use generic error message to prevent user enumeration attacks
       toast({
-        title: "Fehler",
-        description: message,
+        title: "Authentifizierung fehlgeschlagen",
+        description: "Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
         variant: "destructive",
       });
     } finally {
