@@ -22,9 +22,9 @@ const Header = () => {
       <div className="container">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-2xl font-extrabold text-white tracking-tight">NORDIC</span>
-            <span className="text-2xl font-light text-white/90 ml-2 tracking-wide">AUTOMOBILE</span>
+          <Link to="/" className="flex flex-col leading-tight">
+            <span className="text-xl font-extrabold text-white tracking-tight">NORDIC</span>
+            <span className="text-xs font-light text-white/90 tracking-widest">AUTOMOBILE</span>
           </Link>
 
           {/* Desktop Navigation */}
