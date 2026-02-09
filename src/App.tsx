@@ -14,6 +14,7 @@ import Privacy from "./pages/Privacy";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import Maintenance from "./pages/Maintenance";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/datenschutz" element={<Privacy />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/wartung" element={<Maintenance />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
