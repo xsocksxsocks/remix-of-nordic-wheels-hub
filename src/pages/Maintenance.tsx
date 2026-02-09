@@ -1,5 +1,5 @@
 import nordicLogo from "@/assets/nordic-logo-new.png";
-import { Wrench, Mail, Phone } from "lucide-react";
+import { Wrench, Mail, Phone, MapPin } from "lucide-react";
 
 const Maintenance = () => {
   return (
@@ -19,14 +19,18 @@ const Maintenance = () => {
 
           <div className="border-t border-white/20 pt-6 space-y-3 text-sm text-white/70">
             <p className="font-semibold text-white/90">Bei Fragen erreichen Sie uns:</p>
-            <a href="tel:+4910000000" className="flex items-center justify-center gap-2 hover:text-white transition-colors">
+            <a href="tel:+494085539775" className="flex items-center justify-center gap-2 hover:text-white transition-colors">
               <Phone className="h-4 w-4" />
-              +49 100 000 00
+              +49 40 85539775
             </a>
-            <a href="mailto:kontakt@nordic.de" className="flex items-center justify-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:info@nordic-cars.net" className="flex items-center justify-center gap-2 hover:text-white transition-colors">
               <Mail className="h-4 w-4" />
-              kontakt@nordic.de
+              info@nordic-cars.net
             </a>
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4 flex-shrink-0" />
+              <span>Ellernreihe 59, DE-22179 Hamburg</span>
+            </div>
           </div>
         </div>
 
