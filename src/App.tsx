@@ -25,18 +25,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/fahrzeuge" element={<Cars />} />
-          <Route path="/so-funktionierts" element={<HowItWorks />} />
-          <Route path="/lieferung-garantie" element={<DeliveryGuarantee />} />
-          <Route path="/qualitaet" element={<Quality />} />
-          <Route path="/kontakt" element={<Contact />} />
-          <Route path="/impressum" element={<Imprint />} />
-          <Route path="/datenschutz" element={<Privacy />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/wartung" element={<Maintenance />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Maintenance />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
